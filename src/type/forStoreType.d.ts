@@ -1,0 +1,1 @@
+export type pageNumberOrSetFunction = number | ((prev:number)=>number);
