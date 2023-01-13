@@ -7,14 +7,13 @@ import TopContainer from "./components/TopContainer";
 import MiddleContainer from "./components/MiddleContainer";
 import { pageNumberOrSetFunction } from "./type/forStoreType.d";
 import BottomContainer from "./components/BottomContainer";
-import { SEARCH_CONDITION, SEARCH_KEYWORD, ROW_PER_PAGE, CURRENT_PAGE } from "./constantsForStore";
-import { searchByOptions, selectNumberOptions } from "./selectOptions";
+import { SEARCH_CONDITION, SEARCH_KEYWORD, CURRENT_PAGE } from "./constantsForStore";
+import { searchByOptions } from "./selectOptions";
 
 const App = () => {
   const [filteredProducts, setFilteredProducts] = useState<productType[]>([]);
   const [searchCondition, setSearchCondition] = useState(sessionStorage.getItem(SEARCH_CONDITION) || searchByOptions[0]);
   const [searchKeyword, setSearchKeyword] = useState(sessionStorage.getItem(SEARCH_KEYWORD) || "");
-  const [rowsPerPage, setRowsPerPage] = useState(Number(sessionStorage.getItem(ROW_PER_PAGE)) || selectNumberOptions[0]);
   const [currentPage, setCurrentPage] = useState(Number(sessionStorage.getItem(CURRENT_PAGE)) || 1);
   const [totalDataNumber, setTotalDataNumber] = useState(0);
 
@@ -87,8 +86,6 @@ const App = () => {
         filteredProducts={filteredProducts}
         currentPage={currentPage}
         totalDataNumber={totalDataNumber}
-        rowsPerPage={rowsPerPage}
-        setRowsPerPage={setRowsPerPage}
         setAndStoreCurrentPage={setAndStoreCurrentPage}
       />
     </div>

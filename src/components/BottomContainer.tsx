@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ROW_PER_PAGE } from "../constantsForStore";
 import { selectNumberOptions } from "../selectOptions";
 import { productType } from "../type/fetchDataType.d";
@@ -9,8 +10,6 @@ type BottomContainerProps = {
   filteredProducts: productType[];
   currentPage: number;
   totalDataNumber: number;
-  rowsPerPage: number;
-  setRowsPerPage: React.Dispatch<React.SetStateAction<number>>;
   setAndStoreCurrentPage: (pageNumberOrSetFunction: pageNumberOrSetFunction) => void;
 };
 
@@ -18,10 +17,10 @@ const BottomContainer = ({
   filteredProducts,
   currentPage,
   totalDataNumber,
-  rowsPerPage,
-  setRowsPerPage,
   setAndStoreCurrentPage,
 }: BottomContainerProps) => {
+
+  const [rowsPerPage, setRowsPerPage] = useState(Number(sessionStorage.getItem(ROW_PER_PAGE)) || selectNumberOptions[0]);
 
   const onChangeSelectNumber = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
